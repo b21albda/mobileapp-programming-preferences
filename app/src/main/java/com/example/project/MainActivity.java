@@ -3,7 +3,9 @@ package com.example.project;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        myPreferenceRef = getPreferences(MODE_PRIVATE);
-        myPreferenceEditor = myPreferenceRef.edit();
-
         Button btn = findViewById(R.id.button);
 
         btn.setOnClickListener(View -> {
@@ -32,4 +31,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        myPreferenceRef = getSharedPreferences("Main", MODE_PRIVATE);
+        myPreferenceEditor = myPreferenceRef.edit();
+
+        String input = myPreferenceRef.getString("INPUT", "No input found");
+
+        TextView output = findViewById(R.id.output);
+        output.setText(input);
+    }
 }

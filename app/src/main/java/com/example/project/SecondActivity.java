@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -17,7 +18,7 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        myPreferenceRef = getPreferences(MODE_PRIVATE);
+        myPreferenceRef = getSharedPreferences("Main", MODE_PRIVATE);
         myPreferenceEditor = myPreferenceRef.edit();
 
         Button btn = findViewById(R.id.btn_save);
@@ -27,6 +28,8 @@ public class SecondActivity extends AppCompatActivity {
 
             myPreferenceEditor.putString("INPUT", input.getText().toString());
             myPreferenceEditor.apply();
+            myPreferenceEditor.commit();
+
             finish();
         });
     }
