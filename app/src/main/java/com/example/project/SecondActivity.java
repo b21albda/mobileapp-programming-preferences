@@ -28,7 +28,6 @@ public class SecondActivity extends AppCompatActivity {
 
             myPreferenceEditor.putString("INPUT", input.getText().toString());
             myPreferenceEditor.apply();
-            myPreferenceEditor.commit();
 
             finish();
         });

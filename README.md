@@ -1,39 +1,26 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+Skapade en knapp som leder till secondactivity och en textview som visar vad som är sparat i shared preferences i Mainactivity.
+I secondantivity finns det en edittext och en knapp som sparar det som skrivs i fältet i preferences och avslutar activityn.
+När användaren kommer tillbaka till Mainactivity körs metoden `onResume` och då hämtas värdet som sparades i preferences och visas i textviewn.
 
-_Du kan ta bort all text som finns sedan tidigare_.
-
-## Följande grundsyn gäller dugga-svar:
-
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
-
+Nedanstående kod körs när spara knappen i secondactivity klickas på. Då hämtas texten från Edittext fältet och sparas i
+preferences med nyckeln `INPUT`. Slutligen så avslutats secondactivityn.
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
+    btn.setOnClickListener(View -> {
+        EditText input = findViewById(R.id.input);
+
+        myPreferenceEditor.putString("INPUT", input.getText().toString());
+        myPreferenceEditor.apply();
+
+        finish();
+    });
 ```
 
-Bilder läggs i samma mapp som markdown-filen.
-
-![](android.png)
+![](1.png)
+![](2.png)
+![](3.png)
 
 Läs gärna:
 
